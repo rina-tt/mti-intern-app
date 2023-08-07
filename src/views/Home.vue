@@ -1,5 +1,6 @@
 <template>
   <router-view/>
+  <p>aaaaaaa</p>
  
 </template>
 
@@ -14,7 +15,7 @@
 import {baseUrl} from '@/assets/config.js';
 
 export default {
-  name: 'Home',
+  name: 'Login',
 
   components: {
    // 読み込んだコンポーネント名をここに記述する
