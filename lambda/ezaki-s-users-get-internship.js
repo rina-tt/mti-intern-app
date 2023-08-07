@@ -3,6 +3,7 @@ const { unmarshall } = require("@aws-sdk/util-dynamodb");
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
 const TableName = "team2-User";
 
+
 exports.handler = async (event, context) => {
   const response = {
     statusCode: 200,
