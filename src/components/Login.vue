@@ -35,7 +35,7 @@
           <!--    <input type="text" placeholder="Age" v-model.number="user.age" />-->
           <!--  </div>-->
           <!--</div>-->
-          <button :disabled="buttonState" class="button ui fluid huge orange" type="submit">{{submitText}}</button>
+          <button :disabled="buttonState" class="button ui fluid huge" style="background-color: #4DC4FF;" type="submit">{{submitText}}</button>
         </form>
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="toggleMode()" >{{toggleText}}</button>
