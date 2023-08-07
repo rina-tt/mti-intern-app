@@ -1,8 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from '../views/Home.vue';
-import Login from '../views/templates/Login.vue';
-import Profile from '../views/templates/Profile.vue';
-import User from '../views/templates/User.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -13,30 +10,6 @@ const router = createRouter({
       component: Home,
       meta: {
         title: 'Home'
-      }
-    },
-    {
-      path: '/Profile',
-      name: 'Profile',
-      component: Profile,
-      meta: {
-        title: 'Profile'
-      }
-    },
-    {
-      path: '/User',
-      name: 'User',
-      component: User,
-      meta: {
-        title: 'User'
-      }
-    },
-    {
-      path: '/Login',
-      name: 'Login',
-      component: Login,
-      meta: {
-        title: 'Login'
       }
     }
   ]
