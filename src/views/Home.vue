@@ -1,5 +1,7 @@
 <template>
+  <PostDiary />
   <router-view/>
+  
  
 </template>
 
@@ -12,12 +14,16 @@
 // const headers = {'Authorization' : 'mtiToken'};
 
 import {baseUrl} from '@/assets/config.js';
+import PostDiary from '../components/PostDiary.vue';
+
+
 
 export default {
   name: 'Home',
 
   components: {
    // 読み込んだコンポーネント名をここに記述する
+   PostDiary
  
   },
 

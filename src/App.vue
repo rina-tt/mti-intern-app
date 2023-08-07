@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu v-if="!isLoginPage" />
+   <Menu v-if="!isLoginPage" />
     <router-view/>
   </div>
 </template>
