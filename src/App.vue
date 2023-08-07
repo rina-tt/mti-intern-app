@@ -1,24 +1,18 @@
 <template>
-  <div id="app">
-    <Menu v-if="!isLoginPage" />
-    <router-view/>
-  </div>
+  <v-app>
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-  import {RouterView} from 'vue-router'
-  import Menu from '@/components/Menu.vue';
-  
-  export default {
-    name: 'App',
-    components: {
-      Menu
-    },
-    computed: {
-      isLoginPage() {
-        return this.$route.path === '/Login' ;
-      }
-    }
-    
-  }
+
+export default {
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+}
 </script>

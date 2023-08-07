@@ -1,6 +1,6 @@
 <template>
   <router-view/>
- 
+  <Diary />
 </template>
 
 <script>
@@ -12,13 +12,14 @@
 // const headers = {'Authorization' : 'mtiToken'};
 
 import {baseUrl} from '@/assets/config.js';
+import Diary from "../components/diary.vue";
 
 export default {
   name: 'Home',
 
   components: {
    // 読み込んだコンポーネント名をここに記述する
- 
+    Diary
   },
 
   data() {
