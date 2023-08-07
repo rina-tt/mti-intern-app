@@ -29,12 +29,12 @@
               <input type="text" placeholder="Nickname" v-model="user.nickname" />
             </div>
           </div>
-          <!--<div class="field" v-if="!isLogin">-->
-          <!--  <div class="ui left icon input">-->
-          <!--    <i class="calendar icon"></i>-->
-          <!--    <input type="text" placeholder="Age" v-model.number="user.age" />-->
-          <!--  </div>-->
-          <!--</div>-->
+          <div class="field" v-if="!isLogin">
+            <div class="ui left icon input">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Age" v-model.number="user.age" />
+            </div>
+          </div>
           <button :disabled="buttonState" class="button ui fluid huge" style="background-color: #4DC4FF;" type="submit">{{submitText}}</button>
         </form>
       </div>
