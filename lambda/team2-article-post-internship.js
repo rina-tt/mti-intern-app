@@ -1,7 +1,7 @@
 const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
 const { marshall } = require("@aws-sdk/util-dynamodb");
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
-const TableName = "Article";
+const TableName = "team2-Article";
 
 exports.handler = async (event, context) => {
   const response = {
@@ -22,9 +22,9 @@ exports.handler = async (event, context) => {
     return response;
   }
 
-  // 必須パラメータ（userId, text）が指定されているか確認
+  // 必須パラメータ（userId, text1,text2,text3）が指定されているか確認
   const body = event.body ? JSON.parse(event.body) : null;
-  if (!body || !body.userId || !body.text) {
+  if (!body || !body.userId || !body.text1 || !body.text2 || !body.text3) {
     response.statusCode = 400;
     response.body = JSON.stringify({
       message:
@@ -35,7 +35,7 @@ exports.handler = async (event, context) => {
   }
   
   // リクエストパラメータ
-  const { userId, text, category } = body;
+  const { userId, text1,  text2, text3} = body;
   
   // タイムスタンプ（レスポンスに必要）
   const timestamp = Date.now();
@@ -45,9 +45,10 @@ exports.handler = async (event, context) => {
     TableName,
     Item: marshall({
       userId,
-      text,
-      category,
-      timestamp,
+      text1,
+      text2,
+      text3,
+      timestamp
     }),
   };
 
@@ -59,7 +60,7 @@ exports.handler = async (event, context) => {
     await client.send(command);
     // 登録に成功した場合の処理を記載する。(status codeの設定と、response bodyの設定)
     response.statusCode = 201;
-    response.body = JSON.stringify({ userId, text, category, timestamp});
+    response.body = JSON.stringify({ userId, text1, text2, text3});
   } catch (e) {
     response.statusCode = 500;
     response.body = JSON.stringify({
