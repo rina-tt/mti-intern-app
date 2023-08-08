@@ -1,6 +1,7 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from '../views/Home.vue';
 import PostDiary from '../views/PostDiary.vue';
+import Update from '../views/Update.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,15 @@ const router = createRouter({
       component: PostDiary,
       meta: {
         title: 'PostDiary'
+      }
+    },
+    
+    {
+      path: '/update',
+      name: 'Update',
+      component: Update,
+      meta: {
+        title: 'Update'
       }
     }
   ]
