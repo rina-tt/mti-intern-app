@@ -20,8 +20,11 @@
           </div>
           
           <div>パスワード</div>
-          <div class="ui left icon input">
-            <div>{{ password }}</div>
+          <div class="field">
+            <div id="brd" class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="text" placeholder="Password" v-model="password" />
+            </div>
           </div>
             
           <div>ニックネーム</div>
@@ -33,7 +36,7 @@
           </div>
           
           <div>色</div>
-          <div class="field">
+          <div class="field" :class="{ active: isActive }">
             <div class="ui left icon input">
               <select id="brd" class="ui_color" name="ui_color" v-model="color">
                 <option value="#4dc4ff" style="color: #4dc4ff">水色</option>
@@ -46,7 +49,7 @@
           
           <div>フォント</div>
           <div class="field">
-            <div class="ui left icon input" style="max-height: 200px; overflow-y: auto;">
+            <div class="ui left icon input">
               <select id="brd" class="fontFamilys" name="fontFamily" v-model="font">
                 <option value="BIZUDGothic" style="font-family:BIZUDGothic">デフォルト</option>
                 <option value="Meiryo" style="fontFamily:Meiryo">メイリオ</option>
@@ -89,7 +92,7 @@ export default {
     // Vue.jsで使う変数はここに記述する
     return {
       userId: window.localStorage.getItem('userId'),
-      password: window.localStorage.getItem('password'),
+      password: null,
       nickname: null,
       color: window.localStorage.getItem('color'),
       font: window.localStorage.getItem('font'),
@@ -124,9 +127,14 @@ export default {
         throw new Error(errorMessage);
       }
       this.isLoading = false;
+     this.password = jsonData.password;
      this.nickname = jsonData.nickname;
      this.color = jsonData.color;
      this.font = jsonData.font;
+     
+     var body = document.body;
+     body.style.fontFamily = this.font;
+     document.documentElement.style.setProperty('--main-color', this.color);
       
     } catch (e) {
       // エラー時の処理
@@ -145,7 +153,7 @@ export default {
   methods: {
     // Vue.jsで使う関数はここで記述する
     async submit() {
-      // console.log(this.nickname)
+      // console.log(this.password)
       // console.log(this.color)
       // console.log(this.font)
       
@@ -171,6 +179,7 @@ export default {
   
         const text = await res.text();
         const jsonData = text ? JSON.parse(text) : {}
+        console.log(jsonData)
   
         // fetchではネットワークエラー以外のエラーはthrowされないため、明示的にthrowする
         if (!res.ok) {
