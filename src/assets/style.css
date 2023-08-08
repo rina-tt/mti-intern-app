@@ -23,6 +23,18 @@
 	font-family: "Yomogi";
 	src: url(./data/fonts/Yomogi-Regular.ttf);
 }
+@font-face {
+	font-family: "kosugi";
+	src: url(./data/fonts/KosugiMaru-Regular.ttf);
+}
+@font-face {
+	font-family: "Yusei";
+	src: url(./data/fonts/YuseiMagic-Regular.ttf);
+}
+
+:root {
+  --main-color: #4dc4ff;
+}
 
 body {
   font-family:"BIZUDGothic";

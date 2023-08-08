@@ -23,14 +23,14 @@
           <div class="field">
             <div class="ui left icon input">
               <i class="tag icon"></i>
-              <input type="text" placeholder="Nickname" v-model="nickname" />
+              <input id="brd" type="text" placeholder="Nickname" v-model="nickname" />
             </div>
           </div>
           
           <div>色</div>
           <div class="field">
             <div class="ui left icon input">
-              <select class="ui_color" name="ui_color" id="ui_color" v-model="color">
+              <select id="brd" class="ui_color" name="ui_color" v-model="color">
                 <option value="#4dc4ff" style="color: #4dc4ff">水色</option>
                 <option value="#04AF34" style="color: #04AF34">緑色</option>
                 <option value="#FF6AE7" style="color: #FF6AE7">桃色</option>
@@ -41,18 +41,20 @@
           
           <div>フォント</div>
           <div class="field">
-            <div class="ui left icon input">
-              <select class="fontFamilys" name="fontFamily" id="fontFamily"  v-model="font">
+            <div class="ui left icon input" style="max-height: 200px; overflow-y: auto;">
+              <select id="brd" class="fontFamilys" name="fontFamily" v-model="font">
                 <option value="BIZUDGothic" style="font-family:BIZUDGothic">デフォルト</option>
                 <option value="Meiryo" style="fontFamily:Meiryo">メイリオ</option>
                 <option value="serif" style="font-family:serif">明朝体</option>
-                <option value="sans-serif" style="font-family:sans-serif">ゴシック体</option>
+                <!--<option value="sans-serif" style="font-family:sans-serif">ゴシック体</option>-->
                 <option value="monospace" style="font-family:monospace">等幅フォント</option>
-                <option value="fantasy" style="font-family:fantasy">装飾的フォント</option>
+                <!--<option value="fantasy" style="font-family:fantasy">装飾的フォント</option>-->
                 <option value="yomogi" style="font-family:yomogi">よもぎフォント</option>
-                <option value="yosugara" style="font-family:yosugara">夜すがら手書きフォント</option>
-                <option value="karakaze" style="font-family:karakaze">からかぜ手書きフォント</option>
-                <option value="yunafont" style="font-family:yunafont">ゆな手書きフォント</option>
+                <option value="kosugi" style="font-family:kosugi">小杉丸フォント</option>
+                <option value="yusei" style="font-family:yusei">油性マジックフォント</option>
+                <!--<option value="yosugara" style="font-family:yosugara">夜すがら手書きフォント</option>-->
+                <!--<option value="karakaze" style="font-family:karakaze">からかぜ手書きフォント</option>-->
+                <!--<option value="yunafont" style="font-family:yunafont">ゆな手書きフォント</option>-->
                 <option value="Asobifont" style="font-family:Asobifont">遊びメモ書きフォント</option>
               </select>
             </div>
@@ -86,7 +88,7 @@ export default {
     return {
       userId: window.localStorage.getItem('userId'),
       nickname: null,
-      color: '',
+      color: '#4dc4ff',
       font: '',
       message: "",
       token:  window.localStorage.getItem('token'),
@@ -134,7 +136,13 @@ export default {
     // 計算した結果を変数として利用したいときはここに記述する
     buttonState() {
         return !this.userId || !this.nickname || !this.color || !this.font;
-    }
+    },
+    computedStyles() {
+      return {
+        backgroundColor: this.color,
+        borderColor: this.color,
+      };
+    },
     
   },
   
@@ -180,6 +188,7 @@ export default {
         var body = document.body;
         body.style.fontFamily = this.font;
         // body.style.backgroundColor = this.color;
+        document.documentElement.style.setProperty('--main-color', this.color);
        
         console.log(jsonData);
       } catch (e) {
@@ -232,6 +241,14 @@ export default {
   margin-left: 15px;
 }
 .button.ui.fluid {
-  background-color: #4dc4ff;
+  /*background-color: #4dc4ff;*/
+  background-color: var(--main-color);
+}
+#brd {
+    /*border: 3px solid #4DC4FF;*/
+    border: 3px solid var(--main-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 </style>
