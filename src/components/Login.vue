@@ -29,12 +29,6 @@
               <input type="text" placeholder="Nickname" v-model="user.nickname" />
             </div>
           </div>
-          <div class="field" v-if="!isLogin">
-            <div class="ui left icon input">
-              <i class="calendar icon"></i>
-              <input type="text" placeholder="Age" v-model.number="user.age" />
-            </div>
-          </div>
           <button :disabled="buttonState" class="button ui fluid huge" style="background-color: #4DC4FF;" type="submit">{{submitText}}</button>
         </form>
       </div>
@@ -61,7 +55,8 @@ export default {
         userId: null,
         password: null,
         nickname: null,
-        age: null
+        color: null,
+        font: null
       },
       message: "",
       isLoading: false
@@ -82,8 +77,8 @@ export default {
         console.log("bool: ", userId, password)
         return !userId || !password ;
       }else {
-        const {userId, password, nickname, age} = this.user;
-        return !userId || !password || !nickname || !age;
+        const {userId, password, nickname, color, font} = this.user;
+        return !userId || !password || !nickname;
       }
     }
   },
@@ -99,7 +94,8 @@ export default {
         userId: null,
         password: null,
         nickname: null,
-        age: null
+        color: null,
+        font: null
       }
     },
     async submit() {
@@ -146,7 +142,8 @@ export default {
         userId: this.user.userId,
         password:this.user.password,
         nickname: this.user.nickname,
-        age: this.user.age
+        color: this.user.color,
+        font: this.user.font
       };
 
       try {
