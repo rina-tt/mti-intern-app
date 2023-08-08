@@ -94,7 +94,7 @@ export default {
   
   .text {
       width: 100%;
-      height: 1.5rem;
+      height: 1.7rem;
       overflow: hidden;
       text-overflow: ellipsis;
   }
