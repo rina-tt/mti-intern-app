@@ -29,7 +29,7 @@
         
       </form> <!-- ui form-->
       
-     <div class="ui segment"> <!-- 追加: 新しいsegment -->  
+     <div class="ui  custom segment"> <!-- 追加: 新しいsegment -->  
         <div class="field">
             <button @click="postRequest()" class="ui  massive fluid button custom-color" type="submit">投稿</button>
           </div><!--field-->
@@ -156,6 +156,12 @@ export default {
   .custom-textarea{
     font-size:33px;
   }
+  
+  .ui.custom.segment {
+      background-color: #FFFFFF;
+      border: 1px solid #FFFFFF; /* ボーダーラインの色を白色に設定 */
+    }
+  
 
 
 

@@ -1,5 +1,4 @@
 <template>
-  <PostDiary />
   <router-view/>
   
  
@@ -14,7 +13,7 @@
 // const headers = {'Authorization' : 'mtiToken'};
 
 import {baseUrl} from '@/assets/config.js';
-import PostDiary from '../components/PostDiary.vue';
+import PostDiary from '../views/PostDiary.vue';
 
 
 
@@ -34,8 +33,10 @@ export default {
     };
   },
   created() {
+    //this.$router.push({name:'PostDiary'})
   
   },
+  
   computed: {
   // 計算した結果を変数として利用したいときはここに記述する
   },
