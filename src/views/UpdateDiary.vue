@@ -32,10 +32,16 @@
      <div class="ui  custom segment"> <!-- 追加: 新しいsegment -->  
         <div class="field">
             <button @click="putRequest()" class="ui  massive fluid button custom-color" type="submit">編集</button>
-          </div><!--field-->
-    </div><!--ui segment-->
+        </div><!--field-->
+      </div><!--ui segment-->
+      <div class="ui  custom segment">
+        <div class="field">
+            <button @click="deleteRequest()" class="ui  massive fluid button red" type="submit">削除</button>
+        </div><!--field-->
+      </div>
     
     </div> <!--ui segment-->
+
   </div> <!--ui main container-->
  
 </template>
@@ -51,7 +57,7 @@
 import {baseUrl} from '@/assets/config.js';
 
 export default {
-  name: 'Update',
+  name: 'UpdateDiary',
 
   components: {
    // 読み込んだコンポーネント名をここに記述する
@@ -83,18 +89,21 @@ export default {
     async putRequest() {
       // headerを指定する
       const headers = {'Authorization': 'mtiToken'};
+      
+      const { userId, text1, text2, text3, timestamp } = this.post;
+      
       // リクエストボディを指定する
       const requestBody = {
-        text1: this.post.text1,
-        text2: this.post.text2,
-        text3: this.post.text3,
-        userId:window.localStorage.getItem('userId'),
-        timestamp: this.post.timestamp
+        text1,
+        text2,
+        text3,
+        userId,
+        timestamp
       };
       console.log(requestBody);
 
       try {
-        /* global fetch */
+        // 日記を編集
         const res = await fetch(baseUrl + '/article',  {
           method: 'PUT',
           body: JSON.stringify(requestBody),
@@ -119,7 +128,30 @@ export default {
     },
     async deleteRequest(){
       // 削除時の動作
-      
+      // headerを指定する
+      const headers = {'Authorization': 'mtiToken'};
+
+      try {
+        // global fetch 
+        const res = await fetch(baseUrl + `/article?userId=${this.post.userId}&timestamp=${this.post.timestamp}`,  {
+          method: 'DELETE',
+          headers
+        });
+
+        const text = await res.text();
+        const jsonData = text ? JSON.parse(text) : {}
+
+        // fetchではネットワークエラー以外のエラーはthrowされないため、明示的にthrowする
+        if (!res.ok) {
+          const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
+          throw new Error(errorMessage);
+        }
+        
+        // 成功時の処理
+        this.$router.push({ name: 'Login' });
+      } catch (e) {
+        // エラー時の処理
+      }
     }
   },
   // ページを開いた時の動作
@@ -145,8 +177,10 @@ export default {
       
       // 成功時の処理
       //console.log(jsonData);
-      this.user.nickname = jsonData.nickname;
-      this.user.age = jsonData.age;
+      this.post.text1 = jsonData.text1;
+      this.post.text2 = jsonData.text2;
+      this.post.text3 = jsonData.text3;
+      console.log(this.post);
     } catch (e) {
       // エラー時の処理
     }

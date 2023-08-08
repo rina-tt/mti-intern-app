@@ -33,7 +33,7 @@ export default {
     };
   },
   created() {
-    this.$router.push({name:'Update'})
+    this.$router.push({name:'UpdateDiary'})
   
   },
   
