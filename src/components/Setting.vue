@@ -14,7 +14,6 @@
       <!-- 基本的なコンテンツはここに記載する -->
       
       <div class="ui segment">
-        <p class="message">{{message}}</p>
         <form class="ui large form" @submit.prevent="submit()">
           <div>ユーザーID</div>
           <div class="ui left icon input">
@@ -74,6 +73,21 @@
       <button class="button ui huge grey fluid" type="submit" @click="deleteUser" >退会</button>
     </div>
   </div>
+  <v-snackbar
+      v-model="isShow"
+      :timeout="2000"
+    >
+      {{ snackbarText }}
+      <template v-slot:actions>
+        <v-btn
+          color="blue"
+          variant="text"
+          @click="hideSnackbar"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 </template>
 
 <script>
@@ -98,9 +112,10 @@ export default {
       nickname: null,
       color: window.localStorage.getItem('color'),
       font: window.localStorage.getItem('font'),
-      message: "",
       token:  window.localStorage.getItem('token'),
-      isLoading: false
+      isLoading: false,
+      isShow: false,
+      snackbarText: "",
     };
   },
   
@@ -154,12 +169,18 @@ export default {
 
   methods: {
     // Vue.jsで使う関数はここで記述する
+    showSnackbar(text) {
+      this.snackbarText = text;
+      this.isShow = true;
+    },
+    hideSnackbar() {
+      this.isShow = false;
+    },
     async submit() {
       // console.log(this.password)
       // console.log(this.color)
       // console.log(this.font)
       
-      this.message = "";
       const headers = {'Authorization': this.token};
       
       const requestBody = {
@@ -191,7 +212,7 @@ export default {
         
         // 成功時の処理
         this.isLoading = false;
-        this.message = "更新に成功しました。";
+        this.showSnackbar( "更新に成功しました。");
         var body = document.body;
         body.style.fontFamily = this.font;
         document.documentElement.style.setProperty('--main-color', this.color);
@@ -200,7 +221,7 @@ export default {
       } catch (e) {
         // エラー時の処理
         this.isLoading = false;
-        this.message = e;
+        this.showSnackbar(e);
         console.log("e: ", e)
       }
     },
@@ -233,7 +254,7 @@ export default {
       } catch (e) {
         // エラー時の処理
         this.isLoading = false;
-        this.message = e;
+        this.showSnackbar(e)
         console.log("e: ", e)
       }
     },
