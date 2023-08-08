@@ -31,7 +31,7 @@
       
      <div class="ui  custom segment"> <!-- 追加: 新しいsegment -->  
         <div class="field">
-            <button @click="postRequest()" class="ui  massive fluid button custom-color" type="submit">投稿</button>
+            <button @click="putRequest()" class="ui  massive fluid button custom-color" type="submit">編集</button>
           </div><!--field-->
     </div><!--ui segment-->
     
@@ -65,20 +65,22 @@ export default {
         text1:null,
         text2:null,
         text3:null,
-        userId:window.localStorage.getItem('userId')
-      }
+        userId:window.localStorage.getItem('userId'),
+        timestamp:null
+      },
+      // 追加
+      isUpdated: false,
+      errorMessage: null,
     };
   },
-  created() {
   
-  },
   computed: {
   // 計算した結果を変数として利用したいときはここに記述する
   },
 
 
   methods: {
-    async postRequest() {
+    async putRequest() {
       // headerを指定する
       const headers = {'Authorization': 'mtiToken'};
       // リクエストボディを指定する
@@ -86,14 +88,15 @@ export default {
         text1: this.post.text1,
         text2: this.post.text2,
         text3: this.post.text3,
-        userId:window.localStorage.getItem('userId')
+        userId:window.localStorage.getItem('userId'),
+        timestamp: this.post.timestamp
       };
       console.log(requestBody);
 
       try {
         /* global fetch */
         const res = await fetch(baseUrl + '/article',  {
-          method: 'POST',
+          method: 'PUT',
           body: JSON.stringify(requestBody),
           headers
         });
@@ -109,11 +112,45 @@ export default {
         
         // 成功時の処理
         console.log(jsonData);
+        this.isUpdated = true;
       } catch (e) {
         // エラー時の処理
       }
+    },
+    async deleteRequest(){
+      // 削除時の動作
+      
     }
   },
+  // ページを開いた時の動作
+  created: async function() {
+    // headerを指定する
+    const headers = {'Authorization': 'mtiToken'};
+
+    try {
+      /* global fetch */
+      const res = await fetch(baseUrl + `/article?userId=${this.post.userId}&timestamp=${this.post.timestamp}`,  {
+        method: 'GET',
+        headers
+      });
+
+      const text = await res.text();
+      const jsonData = text ? JSON.parse(text) : {}
+
+      // fetchではネットワークエラー以外のエラーはthrowされないため、明示的にthrowする
+      if (!res.ok) {
+        const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
+        throw new Error(errorMessage);
+      }
+      
+      // 成功時の処理
+      //console.log(jsonData);
+      this.user.nickname = jsonData.nickname;
+      this.user.age = jsonData.age;
+    } catch (e) {
+      // エラー時の処理
+    }
+  }
   
 }
 </script>
