@@ -25,8 +25,9 @@ exports.handler = async (event, context) => {
   // TODO: リクエストボディの中身をJavaScriptオブジェクトに変換し、1つ、あるいは複数の変数に代入する
   const {userId, nickname, password} =body;
   
-  const color=null;
-  const font=null;
+  const color = "#4dc4ff";
+  const font = "BIZUDGothic";
+  
   // TODO: DBに登録するための情報をparamオブジェクトとして宣言する（中身を記述）
   const param = {TableName, Item: marshall({userId, nickname, password, color, font})};
 
