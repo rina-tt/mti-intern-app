@@ -1,5 +1,13 @@
 <template>
-   <div class= "ui main container">
+  <div  v-if="isLoading === true" class="text-center load">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="purple"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+   <div  v-if="isLoading === false" class= "ui main container">
     <div class="ui segment">
     <h1 class="custom-h1">今日の日記</h1>
     
@@ -37,7 +45,21 @@
     
     </div> <!--ui segment-->
   </div> <!--ui main container-->
- 
+ <v-snackbar
+      v-model="isShow"
+      :timeout="2000"
+    >
+      {{ snackbarText }}
+      <template v-slot:actions>
+        <v-btn
+          color="blue"
+          variant="text"
+          @click="hideSnackbar"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
 </template>
 
 <script>
@@ -65,8 +87,12 @@ export default {
         text1:null,
         text2:null,
         text3:null,
-        userId:window.localStorage.getItem('userId')
-      }
+        userId:window.localStorage.getItem('userId'),
+      },
+      token: window.localStorage.getItem('token'),
+      isLoading: false,
+      isShow: false,
+      snackbarText: "",
     };
   },
   created() {
@@ -78,20 +104,32 @@ export default {
 
 
   methods: {
+    showSnackbar(text) {
+      this.snackbarText = text;
+      this.isShow = true;
+    },
+    hideSnackbar() {
+      this.isShow = false;
+    },
     async postRequest() {
       // headerを指定する
-      const headers = {'Authorization': 'mtiToken'};
+      const headers = {'Authorization': this.token};
+      if(!this.post.text1 || !this.post.text2 || !this.post.text3) {
+        this.showSnackbar("入力項目が足りていません。")
+        return;
+      }
       // リクエストボディを指定する
       const requestBody = {
         text1: this.post.text1,
         text2: this.post.text2,
         text3: this.post.text3,
-        userId:window.localStorage.getItem('userId')
+        userId:this.post.userId
       };
       console.log(requestBody);
 
       try {
         /* global fetch */
+        this.isLoading = true;
         const res = await fetch(baseUrl + '/article',  {
           method: 'POST',
           body: JSON.stringify(requestBody),
@@ -109,6 +147,8 @@ export default {
         
         // 成功時の処理
         console.log(jsonData);
+        this.isLoading = false;
+        this.$router.push("/")
       } catch (e) {
         // エラー時の処理
       }
@@ -162,7 +202,9 @@ export default {
       border: 1px solid #FFFFFF; /* ボーダーラインの色を白色に設定 */
     }
   
-
+.load {
+    margin-top: 2rem;
+  }
 
 
 </style>

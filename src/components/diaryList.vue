@@ -1,7 +1,6 @@
 <template>
   <div class="diary-list">
-      
-     <DiaryListItem  v-for="(diary, index) in diarys" :key="index" :text1=diary.text1 :text2=diary.text2 :text3=diary.text3 :timestamp=diary.timestamp />
+     <DiaryListItem  v-for="(diary, index) in diarys" :key="index" :text1=diary.text1 :text2=diary.text2 :text3=diary.text3 :timestamp=diary.timestamp :userId=diary.userId />
  </div>
 </template>
 

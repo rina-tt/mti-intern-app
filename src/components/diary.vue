@@ -8,7 +8,7 @@
                 <div class="border"></div>
             </div>
             <div class="edit-button">
-                <v-btn color="success">
+                <v-btn color="primary" @click="transitionEditScreen">
                     <v-icon>mdi-book-open-variant</v-icon>
                     <span  class="button-text">日記を編集</span>
                 </v-btn>
@@ -18,7 +18,7 @@
                 <div class="section">
                     <div class="section-title">失敗したこと</div>
                     <div class="content">
-                        <div class="input-text"> {{text1}}</div>
+                        <div class="input-text" v-html="formatContent(text1)"></div>
                         <div class="image">
                             <img src="https://source.unsplash.com/random" />
                         </div>
@@ -27,7 +27,7 @@
                 <div class="section">
                     <div class="section-title">感動したこと</div>
                     <div class="content">
-                        <div class="input-text"> {{text2}}</div>
+                        <div class="input-text" v-html="formatContent(text2)"></div>
                         <div class="image">
                             <img src="https://source.unsplash.com/random" />
                         </div>
@@ -36,7 +36,7 @@
                 <div class="section">
                     <div class="section-title">明日の目標</div>
                     <div class="content">
-                        <div class="input-text"> {{text3}}</div>
+                        <div class="input-text" v-html="formatContent(text3)"></div>
                         <div class="image">
                             <img src="https://source.unsplash.com/random" />
                         </div>
@@ -78,14 +78,23 @@ export default {
        default: "",
        required: true
    },
+   userId: {
+       type: String,
+       default: "",
+       required: true
+   },
   },
   data() {
       return {
       }
   },
   methods: {
+    formatContent(content) {
+        return content.replace(/\n/g, '<br>');
+      },
      transitionEditScreen() {
-         this.$router.push({name: "edit", query: {userId: "user1", timestamp: this.timestamp}})
+         window.localStorage.setItem('pageIndex', null);
+         this.$router.push({path: '/update', query: {timestamp: this.timestamp}})
      }
   }
 };
@@ -144,7 +153,7 @@ export default {
    .section-title {
        font-size: 2rem;
        font-weight: bold;
-       color: #4CAF50;
+       color: skyblue;
    }
    .header {
        display: flex;

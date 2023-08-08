@@ -5,7 +5,7 @@
       <div class="impressed-text text">{{text2}}</div>
       <div class="goal-text text">{{text3}}</div>
       <v-dialog @click="a" maxWidth="800"  v-model="isOpen">
-        <Diary :timestamp="timestamp" :text1="text1" :text2="text2" :text3="text3" />
+        <Diary :timestamp="timestamp" :text1="text1" :text2="text2" :text3="text3" :userId="userId" />
       </v-dialog>
   </div>
 </template>
@@ -49,6 +49,11 @@ export default {
            default: "",
            required: true
        },
+       userId: {
+           type: String,
+           default: "",
+           required: true
+       },
   },
   data() {
       return {
@@ -71,7 +76,7 @@ export default {
  .diary-list-item {
      width: 100%;
      padding: .9rem;
-     border: 2px solid #4CAF50;
+     border: 2px solid skyblue;
      border-radius: 10px;
      display: flex;
      flex-direction: column;

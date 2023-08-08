@@ -3,7 +3,7 @@
     <v-main>
       <v-app-bar
         v-if="!isLoginPage"
-        color="success"
+        color="primary"
         density="compact"
       >
         <template v-slot:prepend>
@@ -21,12 +21,12 @@
         v-if="!isLoginPage"
         v-model="value"
         active
-        color="success"
+        color="primary"
       >
-      <v-btn icon="mdi-home" @click="this.$router.push('/share')">
-        <v-icon>mdi-share</v-icon>
+      <v-btn @click="this.$router.push('/post')">
+        <v-icon>mdi-note</v-icon>
 
-       <span>共有</span> 
+       <span>投稿</span> 
       </v-btn>
 
       <v-btn @click="this.$router.push('/')">
@@ -51,8 +51,11 @@ export default {
   name: 'App',
 
   data: () => ({
-    value: 1
+    value: parseInt(window.localStorage.getItem('pageIndex')) | null,
   }),
+  created() {
+    window.localStorage.setItem('pageIndex', 1);
+  },
   methods: {
    logout() {
       window.localStorage.clear();
@@ -62,6 +65,12 @@ export default {
   computed: {
     isLoginPage() {
       return this.$route.path === '/Login' ;
+    },
+    currentPath() {
+      if(this.$route.path === '/') {
+        console.log("aaa")
+        return true;
+      }
     }
   }
 }

@@ -18,7 +18,7 @@ const router = createRouter({
     },
     
      {
-      path: '/article',
+      path: '/post',
       name: 'PostDiary',
       component: PostDiary,
       meta: {
@@ -31,7 +31,7 @@ const router = createRouter({
       component: UpdateDiary,
       meta: {
         title: 'UpdateDiary'
-      }
+      },
     },
     {
       path: '/share',

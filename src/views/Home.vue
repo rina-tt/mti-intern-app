@@ -68,10 +68,8 @@ export default {
       year: null,
       month: null,
       isShow: false,
-      // userId: window.localStorage.getItem("userId"),
-      // token: window.localStorage.getItem("token"),
-      userId: "user1",
-      token: "mtiToken",
+      userId: window.localStorage.getItem("userId"),
+      token: window.localStorage.getItem("token"),
       isLoading: false
     };
   },
@@ -111,6 +109,7 @@ export default {
       }
       
       try {
+        this.isLoading = true;
         const res = await fetch(url,  {
           method: 'GET',
           headers
@@ -123,6 +122,7 @@ export default {
           return;
         }
         if(jsonData.articles.length === 0) {
+          this.isLoading = false;
           this.showSnackbar("日記がありません。");
           this.diarys = [];
           return;
@@ -136,6 +136,7 @@ export default {
         
         // 成功時の処理
         this.diarys = jsonData.articles;
+        this.isLoading = false;
       } catch (e) {
         // エラー時の処理
         console.log("e: ", e)
