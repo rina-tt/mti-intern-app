@@ -46,9 +46,7 @@
                 <option value="BIZUDGothic" style="font-family:BIZUDGothic">デフォルト</option>
                 <option value="Meiryo" style="fontFamily:Meiryo">メイリオ</option>
                 <option value="serif" style="font-family:serif">明朝体</option>
-                <!--<option value="sans-serif" style="font-family:sans-serif">ゴシック体</option>-->
                 <option value="monospace" style="font-family:monospace">等幅フォント</option>
-                <!--<option value="fantasy" style="font-family:fantasy">装飾的フォント</option>-->
                 <option value="yomogi" style="font-family:yomogi">よもぎフォント</option>
                 <option value="kosugi" style="font-family:kosugi">小杉丸フォント</option>
                 <option value="yusei" style="font-family:yusei">油性マジックフォント</option>
@@ -64,7 +62,6 @@
         </form>
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="deleteUser" >退会</button>
-      <!--<CommonDialog primaryText="aaa" secondaryText="bbb" onClickFunc="() => console.log('aaa')" ></CommonDialog>  />-->
     </div>
   </div>
 </template>
@@ -87,9 +84,10 @@ export default {
     // Vue.jsで使う変数はここに記述する
     return {
       userId: window.localStorage.getItem('userId'),
+      password: window.localStorage.getItem('password'),
       nickname: null,
-      color: '#4dc4ff',
-      font: '',
+      color: window.localStorage.getItem('color'),
+      font: window.localStorage.getItem('font'),
       message: "",
       token:  window.localStorage.getItem('token'),
       isLoading: false
@@ -136,16 +134,8 @@ export default {
     // 計算した結果を変数として利用したいときはここに記述する
     buttonState() {
         return !this.userId || !this.nickname || !this.color || !this.font;
-    },
-    computedStyles() {
-      return {
-        backgroundColor: this.color,
-        borderColor: this.color,
-      };
-    },
-    
+    }
   },
-  
 
   methods: {
     // Vue.jsで使う関数はここで記述する
@@ -159,6 +149,7 @@ export default {
       
       const requestBody = {
         userId: this.userId,
+        password: this.password,
         nickname: this.nickname,
         color: this.color,
         font: this.font,
@@ -187,7 +178,6 @@ export default {
         this.message = "更新に成功しました。";
         var body = document.body;
         body.style.fontFamily = this.font;
-        // body.style.backgroundColor = this.color;
         document.documentElement.style.setProperty('--main-color', this.color);
        
         console.log(jsonData);
