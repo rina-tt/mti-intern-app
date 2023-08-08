@@ -72,8 +72,8 @@ export default {
       if(this.$route.path === '/') {
         console.log("aaa")
         return true;
-      }
     }
+
   }
 }
 </script>
