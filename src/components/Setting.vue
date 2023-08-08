@@ -70,7 +70,7 @@
           <button :disabled="buttonState"  id="color" class="button ui fluid huge" type="submit">更新</button>
         </form>
       </div>
-      <button class="button ui huge grey fluid" type="submit" @click="deleteUser" >退会</button>
+      <button class="button ui huge grey fluid" type="submit" @click="dialog=true" >退会</button>
     </div>
   </div>
   <v-snackbar
@@ -88,6 +88,34 @@
         </v-btn>
       </template>
     </v-snackbar>
+     <v-dialog
+      v-model="dialog"
+      max-width="320"
+    >
+      <v-card>
+        <v-card-title class="text-h5">
+         本当に退会しますか？
+        </v-card-title>
+        <v-card-text>一度退会すると、ユーザーデータが削除され、再ログインできなくなります。</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="error"
+            text
+            @click="dialog = false"
+          >
+            いいえ
+          </v-btn>
+          <v-btn
+            color="primary"
+            text
+            @click="deleteUser"
+          >
+            はい
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 </template>
 
 <script>
@@ -116,6 +144,7 @@ export default {
       isLoading: false,
       isShow: false,
       snackbarText: "",
+      dialog: false
     };
   },
   
@@ -228,6 +257,7 @@ export default {
     
     async deleteUser() {
       const headers = {'Authorization': this.token};
+      this.dialog = false;
       
      
       try {
