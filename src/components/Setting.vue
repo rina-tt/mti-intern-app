@@ -18,6 +18,11 @@
           <div class="ui left icon input">
             <div>{{ userId }}</div>
           </div>
+          
+          <div>パスワード</div>
+          <div class="ui left icon input">
+            <div>{{ password }}</div>
+          </div>
             
           <div>ニックネーム</div>
           <div class="field">
