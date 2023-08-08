@@ -1,5 +1,7 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from '../views/Home.vue';
+import Share from '../views/templates/share.vue';
+import Setting from '../views/templates/setting.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -11,7 +13,23 @@ const router = createRouter({
       meta: {
         title: 'Home'
       }
-    }
+    },
+    {
+      path: '/share',
+      name: 'Share',
+      component: Share,
+      meta: {
+        title: 'Share'
+      }
+    },
+    {
+      path: '/setting',
+      name: 'Setting',
+      component: Setting,
+      meta: {
+        title: 'Setting'
+      }
+    },
   ]
 })
 

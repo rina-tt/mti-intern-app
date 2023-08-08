@@ -1,15 +1,15 @@
 /* 全体で共通のCSSはこのファイルに記述する */
 
 
-input {
-  height: 30px;
-}
+/*input {*/
+/*  height: 30px;*/
+/*}*/
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+/** {*/
+/*  padding: 0;*/
+/*  margin: 0;*/
+/*  box-sizing: border-box;*/
+/*}*/
 
 
 a {
