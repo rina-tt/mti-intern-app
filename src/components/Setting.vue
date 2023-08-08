@@ -16,21 +16,21 @@
         <form class="ui large form" @submit.prevent="submit()">
           <div>ユーザーID</div>
           <div class="ui left icon input">
-            <div>{{ user.userId }}</div>
+            <div>{{ userId }}</div>
           </div>
             
           <div>ニックネーム</div>
           <div class="field">
             <div class="ui left icon input">
               <i class="tag icon"></i>
-              <input type="text" placeholder="Nickname" v-model="user.nickname" />
+              <input type="text" placeholder="Nickname" v-model="nickname" />
             </div>
           </div>
           
           <div>色</div>
           <div class="field">
             <div class="ui left icon input">
-              <select class="ui_color" name="ui_color" id="ui_color" v-model="user.color">
+              <select class="ui_color" name="ui_color" id="ui_color" v-model="color">
                 <option value="#4dc4ff" style="color: #4dc4ff">水色</option>
                 <option value="#04AF34" style="color: #04AF34">緑色</option>
                 <option value="#FF6AE7" style="color: #FF6AE7">桃色</option>
@@ -42,7 +42,7 @@
           <div>フォント</div>
           <div class="field">
             <div class="ui left icon input">
-              <select class="fontFamilys" name="fontFamily" id="fontFamily" onchange="changeFont(this.value)">
+              <select class="fontFamilys" name="fontFamily" id="fontFamily"  v-model="font">
                 <option value="BIZUDGothic" style="font-family:BIZUDGothic">デフォルト</option>
                 <option value="Meiryo" style="fontFamily:Meiryo">メイリオ</option>
                 <option value="serif" style="font-family:serif">明朝体</option>
@@ -58,7 +58,7 @@
             </div>
           </div>
           
-          <button :disabled="buttonState" class="button ui fluid huge" type="submit" id="color_button">更新</button>
+          <button :disabled="buttonState"  id="color" class="button ui fluid huge" type="submit">更新</button>
         </form>
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="deleteUser" >退会</button>
@@ -84,12 +84,10 @@ export default {
   data() {
     // Vue.jsで使う変数はここに記述する
     return {
-      user: {
-        userId: window.localStorage.getItem('userId'),
-        nickname: null,
-        // color: '#4dc4ff',
-        // font: 'BIZUDGothic'
-      },
+      userId: window.localStorage.getItem('userId'),
+      nickname: null,
+      color: '',
+      font: '',
       message: "",
       token:  window.localStorage.getItem('token'),
       isLoading: false
@@ -107,7 +105,7 @@ export default {
     try {
           /* global fetch */
       this.isLoading = true;
-      const res = await fetch(baseUrl + `/user?userId=${this.user.userId}`,  {
+      const res = await fetch(baseUrl + `/user?userId=${this.userId}`,  {
         method: 'GET',
         headers
       });
@@ -121,7 +119,9 @@ export default {
         throw new Error(errorMessage);
       }
       this.isLoading = false;
-     this.user.nickname = jsonData.nickname;
+     this.nickname = jsonData.nickname;
+     this.color = jsonData.color;
+     this.font = jsonData.font;
       
     } catch (e) {
       // エラー時の処理
@@ -133,9 +133,7 @@ export default {
   computed: {
     // 計算した結果を変数として利用したいときはここに記述する
     buttonState() {
-        // const {userId, nickname, color, font} = this.user;
-        const {userId, nickname} = this.user;
-        return !userId || !nickname;
+        return !this.userId || !this.nickname || !this.color || !this.font;
     }
     
   },
@@ -144,17 +142,18 @@ export default {
   methods: {
     // Vue.jsで使う関数はここで記述する
     async submit() {
+      // console.log(this.nickname)
+      // console.log(this.color)
+      // console.log(this.font)
+      
       this.message = "";
       const headers = {'Authorization': this.token};
       
-      // const {userId, nickname, color, font} = this.user;
-      const {userId, nickname} = this.user;
-      
       const requestBody = {
-        userId,
-        nickname,
-        // color,
-        // font,
+        userId: this.userId,
+        nickname: this.nickname,
+        color: this.color,
+        font: this.font,
       };
   
       try {
@@ -178,6 +177,9 @@ export default {
         // 成功時の処理
         this.isLoading = false;
         this.message = "更新に成功しました。";
+        var body = document.body;
+        body.style.fontFamily = this.font;
+        // body.style.backgroundColor = this.color;
        
         console.log(jsonData);
       } catch (e) {
@@ -195,7 +197,7 @@ export default {
       try {
         /* global fetch */
         this.isLoading = true;
-        const res = await fetch(baseUrl + `/user?userId=${this.user.userId}`,  {
+        const res = await fetch(baseUrl + `/user?userId=${this.userId}`,  {
           method: 'DELETE',
           headers
         });
