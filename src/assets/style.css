@@ -1,5 +1,32 @@
 /* 全体で共通のCSSはこのファイルに記述する */
+@font-face {
+	font-family: "yosugara";
+	src: url(./data/fonts/yosugara1.1.ttf);
+}
+@font-face {
+	font-family: "karakaze";
+	src: url(./data/fonts/karakaze-R.ttf);
+}
+@font-face {
+	font-family: "yunafont";
+	src: url(./data/fonts/YuNaFont.ttf);
+}
+@font-face {
+	font-family: "Asobifont";
+	src: url(./data/fonts/AsobiMemogaki-Regular-1-01.ttf);
+}
+@font-face {
+	font-family: "BIZUDGothic";
+	src: url(./data/fonts/BIZUDGothic-Regular.ttf);
+}
+@font-face {
+	font-family: "Yomogi";
+	src: url(./data/fonts/Yomogi-Regular.ttf);
+}
+
 body {
+  font-family:"BIZUDGothic";
+  line-height: 1.8;
   background-color: #dadada;
 }
 
