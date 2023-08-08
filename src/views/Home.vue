@@ -40,11 +40,11 @@
       ></v-progress-circular>
     </div>
   </div>
-   
 </template>
 
 <script>
 import {baseUrl} from '@/assets/config.js';
+import PostDiary from '../views/PostDiary.vue';
 import DiaryList from "../components/diaryList.vue";
 import {years} from "../const.js";
 import {months} from "../const.js";
@@ -53,6 +53,7 @@ export default {
   name: 'Home',
 
   components: {
+   PostDiary,
     DiaryList,
   },
 
@@ -77,6 +78,7 @@ export default {
   created() {
     this.search()
   },
+  
   computed: {
   },
 
