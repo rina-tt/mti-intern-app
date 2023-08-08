@@ -49,13 +49,14 @@
 <script>
 export default {
   name: 'Diary',
+  
   computed: {
       formatDate() {
         const timestampInMilliseconds = this.timestamp; // ここにDate.now()で得られた値を代入する
         const dateObj = new Date(timestampInMilliseconds);
         const formattedDateTime = dateObj.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
         return formattedDateTime;
-      }
+      },
   },
   props: {
    timestamp: {
@@ -153,7 +154,7 @@ export default {
    .section-title {
        font-size: 2rem;
        font-weight: bold;
-       color: skyblue;
+       color: var(--main-color);
    }
    .header {
        display: flex;

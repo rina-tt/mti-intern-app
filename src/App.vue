@@ -54,7 +54,6 @@ export default {
 
   data: () => ({
     value: parseInt(window.localStorage.getItem('pageIndex')) | null,
-    color: "#4dc4ff",
   }),
   created() {
     window.localStorage.setItem('pageIndex', 1);
@@ -68,6 +67,9 @@ export default {
   computed: {
     isLoginPage() {
       return this.$route.path === '/Login' ;
+    },
+    color() {
+    return "var(--main-color)"; // カスタム変数を返す
     },
     currentPath() {
       if(this.$route.path === '/') {
