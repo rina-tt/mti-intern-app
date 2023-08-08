@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
   }
   
   const body = event.body ? JSON.parse(event.body) : null;
-  if(!body || !body.userId || !body.nickname || !body.password ) {
+  if(!body || !body.userId || !body.nickname || !body.color || !body.font) {
     response.statusCode = 400;
     response.body = JSON.stringify({
       message: "パラメータに異常があります。"
@@ -28,9 +28,9 @@ exports.handler = async (event, context) => {
   }
 
   // TODO: リクエストボディの中身をJavaScriptオブジェクトに変換し、1つ、あるいは複数の変数に代入する
-  const {userId, password, nickname, color, font} =body;
+  const {userId, nickname, color, font} =body;
   // TODO: paramに更新対象のテーブル名と更新内容を記述
-  const param = {TableName, Item: marshall({userId, password, nickname, color, font})};
+  const param = {TableName, Item: marshall({userId, nickname, color, font})};
 
   const command = new PutItemCommand(param);
 
