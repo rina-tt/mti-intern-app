@@ -1,7 +1,7 @@
 const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
 const { marshall } = require("@aws-sdk/util-dynamodb");
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
-const TableName = "User";
+const TableName = "team2-User";
 
 exports.handler = async (event, context) => {
   const response = {
@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
   
   
   const body = event.body ? JSON.parse(event.body) : null;
-  if(!body || !body.userId || !body.nickname || !body.password || !body.age) {
+  if(!body || !body.userId || !body.nickname || !body.password) {
     response.statusCode = 400;
     response.body = JSON.stringify({
       message: "パラメータに異常があります。"
@@ -23,9 +23,13 @@ exports.handler = async (event, context) => {
   }
 
   // TODO: リクエストボディの中身をJavaScriptオブジェクトに変換し、1つ、あるいは複数の変数に代入する
-  const {userId, nickname, age, password} =body;
+  const {userId, nickname, password} =body;
+  
+  const color = "#4dc4ff";
+  const font = "BIZUDGothic";
+  
   // TODO: DBに登録するための情報をparamオブジェクトとして宣言する（中身を記述）
-  const param = {TableName, Item: marshall({userId, nickname, password, age})};
+  const param = {TableName, Item: marshall({userId, nickname, password, color, font})};
 
   // DBにデータを登録するコマンドを用意
   const command = new PutItemCommand(param);
@@ -36,7 +40,7 @@ exports.handler = async (event, context) => {
     // TODO: 登録に成功した場合の処理を記載する。(status codeの設定と、response bodyの設定)
    response.statusCode = 200;
    response.body = JSON.stringify({
-     userId,nickname,age, token: "mtiToken"
+     userId,nickname, token: "mtiToken"
    })
   } catch (e) {
     response.statusCode = 500;

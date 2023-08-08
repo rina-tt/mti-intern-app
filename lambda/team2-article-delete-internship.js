@@ -1,7 +1,8 @@
 const { DynamoDBClient, DeleteItemCommand } = require("@aws-sdk/client-dynamodb");
 const { marshall } = require("@aws-sdk/util-dynamodb");
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
-const TableName = "Article";
+const TableName = "team2-Article";
+
 
 /*** 通常版の解答例(発展課題を含む最終版は下にあります。) ***/
 exports.handler = async (event, context) => {

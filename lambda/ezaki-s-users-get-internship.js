@@ -1,7 +1,8 @@
 const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb");
 const { unmarshall } = require("@aws-sdk/util-dynamodb");
 const client = new DynamoDBClient({ region: "ap-northeast-1" });
-const TableName = "User";
+const TableName = "team2-User";
+
 
 exports.handler = async (event, context) => {
   const response = {
@@ -34,7 +35,7 @@ exports.handler = async (event, context) => {
     }
 
     //TODO: 全ユーザのpasswordを隠蔽する処理を記述
-    const parseUsers = users.map(({userId, nickname, age}) => {return unmarshall({userId, nickname, age})});
+    const parseUsers = users.map(({userId, nickname, color, font}) => {return unmarshall({userId, nickname, color,font})});
     response.statusCode = 200;
     response.body = JSON.stringify(parseUsers);
 

@@ -50,7 +50,7 @@ import {years} from "../const.js";
 import {months} from "../const.js";
 
 export default {
-  name: 'Home',
+  name: 'Login',
 
   components: {
    PostDiary,

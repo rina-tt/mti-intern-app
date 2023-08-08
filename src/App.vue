@@ -16,7 +16,9 @@
         </v-btn>
 
       </v-app-bar>
-      <router-view/>
+      <div id="app">
+        <router-view/>
+      </div>
       <v-bottom-navigation
         v-if="!isLoginPage"
         v-model="value"
