@@ -187,6 +187,9 @@ export default {
   // ページを開いた時の動作
   created: async function() {
     // headerを指定する
+    if(!this.token) {
+      this.$router.push({name: 'Login'})
+    }
     console.log("index: ", window.localStorage.getItem("pageIndex"))
     this.post.timestamp = parseInt(this.$route.query.timestamp);
     const headers = {'Authorization': this.token};

@@ -1,14 +1,16 @@
 <template>
    <div>
-     
-    <div v-if="isLoading" class="ui segment">
-      <div class="ui active dimmer">
-        <div class="ui text loader">Loading</div>
-      </div>
+    <div  v-if="isLoading === true" class="text-center">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="purple"
+        indeterminate
+      ></v-progress-circular>
     </div>
     
     
-    <div v-if="!isLoading" class="ui main container">
+    <div v-if="isLoading === false" class="ui main container">
       <!-- 基本的なコンテンツはここに記載する -->
       
       <div class="ui segment">
@@ -255,4 +257,8 @@ export default {
     overflow: hidden;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
+  .load {
+    margin-top: 2rem;
+  }
 </style>

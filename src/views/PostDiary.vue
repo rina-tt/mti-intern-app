@@ -96,7 +96,9 @@ export default {
     };
   },
   created() {
-  
+    if(!this.token) {
+      this.$router.push({name: 'Login'})
+    }
   },
   computed: {
   // 計算した結果を変数として利用したいときはここに記述する

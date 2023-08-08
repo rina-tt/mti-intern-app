@@ -74,6 +74,9 @@ export default {
     };
   },
   created() {
+    if(!this.token) {
+      this.$router.push({name: 'Login'})
+    }
     this.search()
   },
   
