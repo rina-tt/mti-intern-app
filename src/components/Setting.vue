@@ -148,7 +148,7 @@ export default {
   computed: {
     // 計算した結果を変数として利用したいときはここに記述する
     buttonState() {
-        return !this.userId || !this.nickname || !this.color || !this.font;
+        return !this.userId|| !this.password || !this.nickname || !this.color || !this.font;
     }
   },
 

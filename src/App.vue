@@ -3,7 +3,7 @@
     <v-main>
       <v-app-bar
         v-if="!isLoginPage"
-        color="primary"
+        :color="color"
         density="compact"
       >
         <template v-slot:prepend>
@@ -23,7 +23,7 @@
         v-if="!isLoginPage"
         v-model="value"
         active
-        color="primary"
+        :color="color"
       >
       <v-btn @click="this.$router.push('/post')">
         <v-icon>mdi-note</v-icon>
@@ -48,12 +48,13 @@
 </template>
 
 <script>
-
+import {baseUrl} from '@/assets/config.js';
 export default {
   name: 'App',
 
   data: () => ({
     value: parseInt(window.localStorage.getItem('pageIndex')) | null,
+    color: "#4dc4ff",
   }),
   created() {
     window.localStorage.setItem('pageIndex', 1);
