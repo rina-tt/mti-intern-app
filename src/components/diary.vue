@@ -157,7 +157,7 @@ export default {
    .section-title {
        font-size: 2rem;
        font-weight: bold;
-       color: var(--main-color);
+       color: var(--main-color, #4dc4ff);
    }
    .header {
        display: flex;
