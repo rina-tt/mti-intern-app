@@ -9,8 +9,8 @@
             </div>
             <div class="edit-button">
                 <v-btn :color="color" @click="transitionEditScreen">
-                    <v-icon>mdi-book-open-variant</v-icon>
-                    <span  class="button-text font-size20">日記を編集</span>
+                    <v-icon class="icon">mdi-book-open-variant</v-icon>
+                    <span class="button-text font-size20">日記を編集</span>
                 </v-btn>
             </div>
         </div>
@@ -177,6 +177,12 @@ export default {
    }
    .button-text {
        margin-left: .3rem;
+       color: #fff;
+   }
+   .icon {
+       font-size: 1.5rem;
+       margin-top: -7px;
+       color: #fff;
    }
    .font-size20{
     	font-size: 20px;
