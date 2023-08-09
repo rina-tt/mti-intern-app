@@ -76,7 +76,7 @@ export default {
  .diary-list-item {
      width: 100%;
      padding: .9rem;
-     border: 2px solid var(--main-color);;
+     border: 2px solid var(--main-color);
      border-radius: 10px;
      display: flex;
      flex-direction: column;
