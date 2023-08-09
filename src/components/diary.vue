@@ -58,7 +58,7 @@ export default {
         return formattedDateTime;
       },
       color() {
-        return "var(--main-color)"; // カスタム変数を返す
+        return "var(--main-color, #4dc4ff)"; // カスタム変数を返す
       },
   },
   props: {

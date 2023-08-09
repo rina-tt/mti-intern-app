@@ -53,17 +53,17 @@
           <div class="field">
             <div class="ui left icon input">
               <select id="brd" class="fontFamilys" name="fontFamily" v-model="font">
-                <option value="BIZUDGothic" style="font-family:BIZUDGothic">デフォルト</option>
+                <option value="BIZ UDMincho" style="font-family:BIZ UDMincho, serif">デフォルト</option>
                 <option value="Meiryo" style="fontFamily:Meiryo">メイリオ</option>
                 <option value="serif" style="font-family:serif">明朝体</option>
                 <option value="monospace" style="font-family:monospace">等幅フォント</option>
-                <option value="yomogi" style="font-family:yomogi">よもぎフォント</option>
-                <option value="kosugi" style="font-family:kosugi">小杉丸フォント</option>
-                <option value="yusei" style="font-family:yusei">油性マジックフォント</option>
+                <option value="Yomogi" style="font-family:Yomogi">よもぎフォント</option>
+                <option value="Kosugi Maru" style="font-family:Kosugi Maru">小杉丸フォント</option>
+                <option value="Yusei Magic" style="font-family:Yusei Magic">油性マジックフォント</option>
                 <!--<option value="yosugara" style="font-family:yosugara">夜すがら手書きフォント</option>-->
                 <!--<option value="karakaze" style="font-family:karakaze">からかぜ手書きフォント</option>-->
                 <!--<option value="yunafont" style="font-family:yunafont">ゆな手書きフォント</option>-->
-                <option value="Asobifont" style="font-family:Asobifont">遊びメモ書きフォント</option>
+                <!--<option value="Asobifont" style="font-family:Asobifont">遊びメモ書きフォント</option>-->
               </select>
             </div>
           </div>
@@ -298,6 +298,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDMincho&family=Kosugi+Maru&family=Shippori+Mincho:wght@400;600&family=Yomogi&family=Yusei+Magic&display=swap');
 /* スタイルオプションを使ってスタイルを定義します */
 .option{
   margin-left: 15px;
