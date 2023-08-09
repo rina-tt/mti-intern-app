@@ -14,7 +14,7 @@ const router = createRouter({
       name: 'Home',
       component: Home,
       meta: {
-        title: 'Home'
+        title: 'ほんのいちにち'
       }
     },
     {
@@ -22,7 +22,7 @@ const router = createRouter({
       name: 'Login',
       component: Login,
       meta: {
-        title: 'Login'
+        title: 'ほんのいちにち'
       }
     },
      {
@@ -30,7 +30,7 @@ const router = createRouter({
       name: 'PostDiary',
       component: PostDiary,
       meta: {
-        title: 'PostDiary'
+        title: 'ほんのいちにち'
       }
     },
     {
@@ -38,7 +38,7 @@ const router = createRouter({
       name: 'UpdateDiary',
       component: UpdateDiary,
       meta: {
-        title: 'UpdateDiary'
+        title: 'ほんのいちにち'
       },
     },
     {
@@ -46,7 +46,7 @@ const router = createRouter({
       name: 'Share',
       component: Share,
       meta: {
-        title: 'Share'
+        title: 'ほんのいちにち'
       }
     },
     {
@@ -54,7 +54,7 @@ const router = createRouter({
       name: 'Setting',
       component: Setting,
       meta: {
-        title: 'Setting'
+        title: 'ほんのいちにち'
       }
     }
   ]
