@@ -81,6 +81,7 @@ export default {
 <style scoped>
     .font-size28{
     	font-size: 28px;
+    	color: #fff
     }
     .navicon{
         font-size: 35px;
