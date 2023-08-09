@@ -71,7 +71,7 @@
           <button :disabled="buttonState"  id="color" class="button ui fluid huge" type="submit">更新</button>
         </form>
       </div>
-      <button class="button ui huge grey fluid" type="submit" @click="dialog=true" >退会</button>
+      <button id="btn_color" class="button ui huge fluid" type="submit" @click="dialog=true" >退会</button>
     </div>
   </div>
   <v-snackbar
@@ -305,6 +305,11 @@ export default {
 .button.ui.fluid {
   /*background-color: #4dc4ff;*/
   background-color: var(--main-color);
+  color: #fff;
+}
+#btn_color{
+  background-color: red;
+  color: #fff;
 }
 #brd {
     /*border: 3px solid #4DC4FF;*/
