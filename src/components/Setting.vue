@@ -314,4 +314,8 @@ export default {
   .load {
     margin-top: 2rem;
   }
+  
+  .container {
+    margin:1rem 0 3rem 0;
+  }
 </style>
