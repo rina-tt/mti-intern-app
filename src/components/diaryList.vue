@@ -40,6 +40,6 @@ export default {
          display: flex;
          flex-direction: column;
          row-gap: 1rem;
-         margin-bottom: 1.5rem;
+         margin-bottom: 3rem;
      }
 </style>

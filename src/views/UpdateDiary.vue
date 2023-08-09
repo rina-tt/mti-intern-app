@@ -343,7 +343,9 @@ export default {
   .load {
     margin-top: 2rem;
   }
-
+  .container {
+    margin-bottom: 2rem;
+  }
 
 
 </style>
