@@ -7,11 +7,11 @@
         density="compact"
       >
         <template v-slot:prepend>
-          <v-app-bar-nav-icon></v-app-bar-nav-icon>
+          <v-app-bar-nav-icon class="icon_color"></v-app-bar-nav-icon>
         </template>
 
         <v-app-bar-title id="text_color" class="font-size28">ほんのいちにち</v-app-bar-title>
-        <v-btn icon @click="logout">
+        <v-btn icon @click="logout" class="icon_color">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
 
@@ -96,6 +96,9 @@ export default {
     }
     .v-bottom-navigation{
       height:80px !important;
+    }
+    .icon_color{
+      color: #fff;
     }
 
 </style>
