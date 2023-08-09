@@ -51,6 +51,7 @@
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="toggleMode()" >{{toggleText}}</button>
     </div>
+
 </template>
 
 <script>
@@ -152,6 +153,7 @@ export default {
             const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
             throw new Error(errorMessage);
           }
+
           
           window.localStorage.setItem('token', jsonData.token);
           window.localStorage.setItem('userId', this.user.userId);
