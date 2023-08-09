@@ -37,7 +37,7 @@
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="text" placeholder="Password" v-model="user.password" />
+              <input type="password" placeholder="Password" v-model="user.password" />
             </div>
           </div>
           <div class="field" v-if="!isLogin">
