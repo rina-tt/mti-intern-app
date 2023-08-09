@@ -4,7 +4,7 @@
       <v-progress-circular
         :size="70"
         :width="7"
-        color="purple"
+        :color="color_pro"
         indeterminate
       ></v-progress-circular>
     </div>
@@ -108,7 +108,7 @@
             いいえ
           </v-btn>
           <v-btn
-            color="primary"
+            :color="color_pro"
             text
             @click="deleteUser"
           >
@@ -193,8 +193,11 @@ export default {
   computed: {
     // 計算した結果を変数として利用したいときはここに記述する
     buttonState() {
-        return !this.userId || !this.nickname || !this.color || !this.font;
-    }
+        return !this.userId|| !this.password || !this.nickname || !this.color || !this.font;
+    },
+    color_pro() {
+      return "var(--main-color)"; // カスタム変数を返す
+    },
   },
 
   methods: {

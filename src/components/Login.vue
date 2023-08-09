@@ -3,7 +3,7 @@
       <v-progress-circular
         :size="70"
         :width="7"
-        color="purple"
+        :color="color"
         indeterminate
       ></v-progress-circular>
     </div>
@@ -37,7 +37,7 @@
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" placeholder="Password" v-model="user.password" />
+              <input type="text" placeholder="Password" v-model="user.password" />
             </div>
           </div>
           <div class="field" v-if="!isLogin">
@@ -46,12 +46,11 @@
               <input type="text" placeholder="Nickname" v-model="user.nickname" />
             </div>
           </div>
-          <button :disabled="buttonState" class="button ui fluid huge" style="background-color: #4DC4FF;" type="submit">{{submitText}}</button>
+          <button :disabled="buttonState" class="button ui fluid huge" type="submit">{{submitText}}</button>
         </form>
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="toggleMode()" >{{toggleText}}</button>
     </div>
-
 </template>
 
 <script>
@@ -89,6 +88,9 @@ export default {
     },
     toggleText() {
       return this.isLogin ? "新規登録" : "ログイン";
+    },
+    color() {
+    return "var(--main-color)"; // カスタム変数を返す
     },
     buttonState() {
       if(this.isLogin) {
@@ -153,7 +155,6 @@ export default {
             const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
             throw new Error(errorMessage);
           }
-
           
           window.localStorage.setItem('token', jsonData.token);
           window.localStorage.setItem('userId', this.user.userId);
@@ -221,6 +222,9 @@ export default {
 
 <style scoped>
 /* このコンポーネントだけに適用するCSSはここに記述する */
+.button.ui.fluid.huge{
+  background-color: var(--main-color);
+}
 .load {
   margin-top: 2rem;
 }

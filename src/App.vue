@@ -3,7 +3,8 @@
     <v-main>
       <v-app-bar
         v-if="!isLoginPage"
-        color="primary"
+        :color="color"
+        density="compact"
       >
         <template v-slot:prepend>
           <v-app-bar-nav-icon></v-app-bar-nav-icon>
@@ -22,7 +23,7 @@
         v-if="!isLoginPage"
         v-model="value"
         active
-        color="primary">
+        :color="color">
     
         <v-btn @click="this.$router.push('/post')" class="button ">
           <v-icon class="navicon float">mdi-note</v-icon>
@@ -44,7 +45,7 @@
   </v-app>
 </template>
 <script>
-
+import {baseUrl} from '@/assets/config.js';
 export default {
   name: 'App',
 
@@ -63,6 +64,9 @@ export default {
   computed: {
     isLoginPage() {
       return this.$route.path === '/Login' ;
+    },
+    color() {
+    return "var(--main-color)"; // カスタム変数を返す
     },
     currentPath() {
       if(this.$route.path === '/') {

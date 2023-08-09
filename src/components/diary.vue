@@ -8,7 +8,7 @@
                 <div class="border"></div>
             </div>
             <div class="edit-button">
-                <v-btn color="primary" @click="transitionEditScreen">
+                <v-btn :color="color" @click="transitionEditScreen">
                     <v-icon>mdi-book-open-variant</v-icon>
                     <span  class="button-text font-size20">日記を編集</span>
                 </v-btn>
@@ -49,13 +49,17 @@
 <script>
 export default {
   name: 'Diary',
+  
   computed: {
       formatDate() {
         const timestampInMilliseconds = this.timestamp; // ここにDate.now()で得られた値を代入する
         const dateObj = new Date(timestampInMilliseconds);
         const formattedDateTime = dateObj.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
         return formattedDateTime;
-      }
+      },
+      color() {
+        return "var(--main-color)"; // カスタム変数を返す
+      },
   },
   props: {
    timestamp: {
@@ -153,7 +157,7 @@ export default {
    .section-title {
        font-size: 2rem;
        font-weight: bold;
-       color: skyblue;
+       color: var(--main-color);
    }
    .header {
        display: flex;
