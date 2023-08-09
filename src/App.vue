@@ -23,30 +23,27 @@
         v-if="!isLoginPage"
         v-model="value"
         active
-        :color="color"
-      >
-      <v-btn @click="this.$router.push('/post')">
-        <v-icon>mdi-note</v-icon>
-
-       <span>投稿</span> 
-      </v-btn>
-
-      <v-btn @click="this.$router.push('/')">
-        <v-icon>mdi-home</v-icon>
-
-        <span>ホーム</span>
-      </v-btn>
-
-      <v-btn @click="this.$router.push('/setting')">
-        <v-icon>mdi-cog</v-icon>
-
-        <span>設定</span>
-      </v-btn>
-    </v-bottom-navigation>
+        :color="color">
+    
+        <v-btn @click="this.$router.push('/post')" class="button ">
+          <v-icon class="navicon float">mdi-note</v-icon>
+          <span class="font-size28 float">投稿</span> 
+        </v-btn>
+        
+        <v-btn @click="this.$router.push('/')" class="button">
+          <v-icon class="navicon">mdi-home</v-icon>
+          <span class="font-size28">ホーム</span>
+        </v-btn>
+  
+        <v-btn @click="this.$router.push('/setting')" class="button">
+          <v-icon class="navicon">mdi-cog</v-icon>
+          <span class="font-size28">設定</span>
+        </v-btn>
+        
+      </v-bottom-navigation>
     </v-main>
   </v-app>
 </template>
-
 <script>
 import {baseUrl} from '@/assets/config.js';
 export default {
@@ -80,3 +77,22 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+    .font-size28{
+    	font-size: 28px;
+    }
+    .navicon{
+        font-size: 35px;
+    }
+    .float{
+       float: left !important;
+    }
+    .v-bottom-navigation .button {
+      width: 130px !important; /* ボタンの横幅を指定 */
+    }
+    .v-bottom-navigation{
+      height:80px !important;
+    }
+
+</style>

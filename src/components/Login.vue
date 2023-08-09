@@ -37,7 +37,7 @@
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="text" placeholder="Password" v-model="user.password" />
+              <input type="password" placeholder="Password" v-model="user.password" />
             </div>
           </div>
           <div class="field" v-if="!isLogin">
@@ -51,6 +51,7 @@
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="toggleMode()" >{{toggleText}}</button>
     </div>
+
 </template>
 
 <script>
@@ -155,6 +156,7 @@ export default {
             const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
             throw new Error(errorMessage);
           }
+
           
           window.localStorage.setItem('token', jsonData.token);
           window.localStorage.setItem('userId', this.user.userId);

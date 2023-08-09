@@ -14,6 +14,7 @@
       <!-- 基本的なコンテンツはここに記載する -->
       
       <div class="ui segment">
+
         <form class="ui large form" @submit.prevent="submit()">
           <div>ユーザーID</div>
           <div class="ui left icon input">
@@ -213,6 +214,7 @@ export default {
       // console.log(this.color)
       // console.log(this.font)
       
+
       const headers = {'Authorization': this.token};
       
       const requestBody = {
@@ -285,7 +287,7 @@ export default {
        this.$router.push({name: 'Login'})
         console.log(jsonData);
       } catch (e) {
-        // エラー時の処理
+        // エ���ー時の処理
         this.isLoading = false;
         this.showSnackbar(e)
         console.log("e: ", e)
