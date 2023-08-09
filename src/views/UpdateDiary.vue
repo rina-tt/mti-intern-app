@@ -44,7 +44,7 @@
       </div><!--ui segment-->
       <div class="ui  custom segment">
         <div class="field">
-            <button @click="deleteRequest()" class="ui  massive fluid button red" type="submit">削除</button>
+            <button @click="dialog = true" class="ui  massive fluid button red" type="submit">削除</button>
         </div><!--field-->
       </div>
     
@@ -66,6 +66,34 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <v-dialog
+      v-model="dialog"
+      max-width="320"
+    >
+      <v-card>
+        <v-card-title class="text-h5">
+         日記を削除しますか？
+        </v-card-title>
+        <v-card-text>一度削除すると、日記データが削除され、閲覧できなくなります。</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="error"
+            text
+            @click="dialog = false"
+          >
+            いいえ
+          </v-btn>
+          <v-btn
+            color="primary"
+            text
+            @click="deleteRequest()"
+          >
+            はい
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
  
 </template>
 
@@ -93,6 +121,7 @@ export default {
       isLoading: false,
       isShow: false,
       snackbarText: "",
+      dialog: false
     };
   },
   
@@ -157,6 +186,7 @@ export default {
     async deleteRequest(){
       // 削除時の動作
       // headerを指定する
+      this.dialog = false;
       const headers = {'Authorization': this.token};
 
       try {
