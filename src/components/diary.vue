@@ -129,7 +129,7 @@ export default {
    }
    .date {
        padding-left: .8rem;
-       font-size: 2rem;
+       font-size: 1.7rem;
        font-weight: normal;
    }
    .border {
