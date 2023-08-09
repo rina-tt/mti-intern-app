@@ -3,7 +3,7 @@
       <v-progress-circular
         :size="70"
         :width="7"
-        color="purple"
+        :color="color"
         indeterminate
       ></v-progress-circular>
     </div>
@@ -101,7 +101,9 @@ export default {
     }
   },
   computed: {
-  // 計算した結果を変数として利用したいときはここに記述する
+    color() {
+      return "var(--main-color)"; // カスタム変数を返す
+    },
   },
 
 

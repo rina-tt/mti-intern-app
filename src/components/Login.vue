@@ -3,7 +3,7 @@
       <v-progress-circular
         :size="70"
         :width="7"
-        color="purple"
+        :color="color"
         indeterminate
       ></v-progress-circular>
     </div>
@@ -88,6 +88,9 @@ export default {
     },
     toggleText() {
       return this.isLogin ? "新規登録" : "ログイン";
+    },
+    color() {
+    return "var(--main-color)"; // カスタム変数を返す
     },
     buttonState() {
       if(this.isLogin) {
