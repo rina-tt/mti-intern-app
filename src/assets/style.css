@@ -9,45 +9,12 @@ a {
   text-decoration: none;
 }
 
-@font-face {
-	font-family: "yosugara";
-	src: url(./data/fonts/yosugara1.1.ttf);
-}
-@font-face {
-	font-family: "karakaze";
-	src: url(./data/fonts/karakaze-R.ttf);
-}
-@font-face {
-	font-family: "yunafont";
-	src: url(./data/fonts/YuNaFont.ttf);
-}
-@font-face {
-	font-family: "Asobifont";
-	src: url(./data/fonts/AsobiMemogaki-Regular-1-01.ttf);
-}
-@font-face {
-	font-family: "BIZUDGothic";
-	src: url(./data/fonts/BIZUDGothic-Regular.ttf);
-}
-@font-face {
-	font-family: "Yomogi";
-	src: url(./data/fonts/Yomogi-Regular.ttf);
-}
-@font-face {
-	font-family: "kosugi";
-	src: url(./data/fonts/KosugiMaru-Regular.ttf);
-}
-@font-face {
-	font-family: "Yusei";
-	src: url(./data/fonts/YuseiMagic-Regular.ttf);
-}
-
 :root {
   --main-color: #4dc4ff;
 }
 
 body {
-  font-family:"BIZUDGothic";
+  font-family:"BIZ UDMincho";
   line-height: 1.8;
   background-color: #dadada;
 }
