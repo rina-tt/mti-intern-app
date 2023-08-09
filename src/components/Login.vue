@@ -1,12 +1,29 @@
 <template>
-  <div>
-    <div v-if="isLoading" class="ui segment">
-      <div class="ui active dimmer">
-        <div class="ui text loader">Loading</div>
-      </div>
+    <div  v-if="isLoading === true" class="text-center load">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="purple"
+        indeterminate
+      ></v-progress-circular>
     </div>
+    <v-snackbar
+      v-model="isShow"
+      :timeout="2000"
+    >
+      {{ snackbarText }}
+      <template v-slot:actions>
+        <v-btn
+          color="blue"
+          variant="text"
+          @click="hideSnackbar"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     
-    <div v-if="!isLoading" class="ui main container">
+    <div v-if="isLoading === false" class="ui main container">
       <!-- 基本的なコンテンツはここに記載する -->
       <div class="ui segment">
         <p class="message">{{message}}</p>
@@ -34,7 +51,7 @@
       </div>
       <button class="button ui huge grey fluid" type="submit" @click="toggleMode()" >{{toggleText}}</button>
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -59,7 +76,9 @@ export default {
         font: null
       },
       message: "",
-      isLoading: false
+      isLoading: false,
+      isShow: false,
+      snackbarText: "",
     };
   },
 
@@ -85,6 +104,13 @@ export default {
 
   methods: {
     // Vue.jsで使う関数はここで記述する
+    showSnackbar(text) {
+      this.snackbarText = text;
+      this.isShow = true;
+    },
+    hideSnackbar() {
+      this.isShow = false;
+    },
     toggleMode() {
       this.isLogin = !this.isLogin
       this.clearForm()
@@ -105,6 +131,11 @@ export default {
           userId: this.user.userId,
           password:this.user.password
         };
+        
+        if(!this.user.userId || !this.user.password) {
+          this.showSnackbar("userIdとpasswordの両方を入力してください。");
+          return;
+        }
 
         try {
           /* global fetch */
@@ -122,21 +153,28 @@ export default {
             const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
             throw new Error(errorMessage);
           }
-          this.isLoading = false;
+
           
           window.localStorage.setItem('token', jsonData.token);
           window.localStorage.setItem('userId', this.user.userId);
           
+          this.isLoading = false;
           this.$router.push({name: 'Home'});
           
         } catch (e) {
           // エラー時の処理
-        this.message = e;
+          this.showSnackbar(e)
           this.isLoading = false;
           console.log("e: ", e)
         }
         return;
       }
+      
+      if(!this.user.userId || !this.user.password || !this.user.nickname) {
+          this.showSnackbar("userIdとpasswordとnicknameすべてを入力してください。");
+          return;
+      }
+
       
       const requestBody = {
         userId: this.user.userId,
@@ -145,7 +183,7 @@ export default {
         color: this.user.color,
         font: this.user.font
       };
-
+      
       try {
         /* global fetch */
         this.isLoading = true;
@@ -173,7 +211,7 @@ export default {
       } catch (e) {
         // エラー時の処理
         this.isLoading = false;
-        this.message = e;
+        this.showSnackbar(e)
         console.log("e: ", e)
       }
     }
@@ -183,4 +221,7 @@ export default {
 
 <style scoped>
 /* このコンポーネントだけに適用するCSSはここに記述する */
+.load {
+  margin-top: 2rem;
+}
 </style>
