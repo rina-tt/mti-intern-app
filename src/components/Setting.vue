@@ -16,30 +16,30 @@
       <div class="ui segment">
 
         <form class="ui large form" @submit.prevent="submit()">
-          <div>ユーザーID</div>
+          <div class="font-size24">ユーザーID</div>
           <div class="ui left icon input">
-            <div>{{ userId }}</div>
+            <div class="font-size24 position">{{ userId }}</div>
           </div>
           
-          <div>パスワード</div>
+          <div class="font-size24 position">パスワード</div>
           <div class="field">
-            <div id="brd" class="ui left icon input">
+            <div id="brd" class="ui left icon input position">
               <i class="lock icon"></i>
               <input type="password" placeholder="Password" v-model="password" minlength="5"/>
             </div>
           </div>
             
-          <div>ニックネーム</div>
+          <div class="font-size24">ニックネーム</div>
           <div class="field">
-            <div class="ui left icon input">
+            <div class="ui left icon input position">
               <i class="tag icon"></i>
               <input id="brd" type="text" placeholder="Nickname" v-model="nickname" />
             </div>
           </div>
           
-          <div>色</div>
+          <div class="font-size24">色</div>
           <div class="field" :class="{ active: isActive }">
-            <div class="ui left icon input">
+            <div class="ui left icon input position">
               <select id="brd" class="ui_color" name="ui_color" v-model="color">
                 <option value="#4dc4ff" style="color: #4dc4ff">水色</option>
                 <option value="#04AF34" style="color: #04AF34">緑色</option>
@@ -49,9 +49,9 @@
             </div>
           </div>
           
-          <div>フォント</div>
+          <div class="font-size24">フォント</div>
           <div class="field">
-            <div class="ui left icon input">
+            <div class="ui left icon input position">
               <select id="brd" class="fontFamilys" name="fontFamily" v-model="font">
                 <option value="BIZ UDMincho" style="font-family:BIZ UDMincho, serif">デフォルト</option>
                 <option value="Meiryo" style="fontFamily:Meiryo">メイリオ</option>
@@ -327,5 +327,11 @@ export default {
   
   .container {
     margin:1rem 0 3rem 0;
+  }
+  .font-size24{
+    font-size:24px;
+  }
+  .position{
+    margin-top:10px;
   }
 </style>
