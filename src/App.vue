@@ -66,7 +66,7 @@ export default {
       return this.$route.path === '/Login' ;
     },
     color() {
-    return "var(--main-color)"; // カスタム変数を返す
+    return "var(--main-color, #4dc4ff)"; // カスタム変数を返す
     },
     currentPath() {
       if(this.$route.path === '/') {

@@ -208,7 +208,7 @@ export default {
 
 <style scoped>
 .ui.input{
-    border: 3px solid var(--main-color); /* 縁の色を赤に設定 */
+    border: 3px solid var(--main-color, #4dc4ff); /* 縁の色を赤に設定 */
     border-radius: 15px; /* 縁を丸くする半径の値を設定（10pxは例です） */
     overflow: hidden;  /*子要素をまるく*/
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* ボックスシャドウを追加 */
@@ -216,7 +216,7 @@ export default {
   
 
 .custom-color {
-    background-color: var(--main-color);
+    background-color: var(--main-color, #4dc4ff);
     color: white;
   }
   
@@ -224,7 +224,7 @@ export default {
   .custom-color:active,
   .custom-color:hover,
   .custom-color:focus{
-    background-color: var(--main-color);
+    background-color: var(--main-color, #4dc4ff);
     color: white;
   }
   
