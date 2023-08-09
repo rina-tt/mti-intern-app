@@ -219,12 +219,10 @@ export default {
 
 <style scoped>
 /* このコンポーネントだけに適用するCSSはここに記述する */
-<<<<<<< HEAD
 .button.ui.fluid.huge{
   background-color: var(--main-color);
-=======
+}
 .load {
   margin-top: 2rem;
->>>>>>> main
 }
 </style>
