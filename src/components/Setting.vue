@@ -25,7 +25,7 @@
           <div class="field">
             <div id="brd" class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="text" placeholder="Password" v-model="password" />
+              <input type="password" placeholder="Password" v-model="password" minlength="5"/>
             </div>
           </div>
             
