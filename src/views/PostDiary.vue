@@ -9,10 +9,10 @@
     </div>
    <div  v-if="isLoading === false" class= "ui main container">
     <div class="ui segment">
-    <h1 class="custom-h1">今日の日記</h1>
+    <div class="custom-h1">今日の日記</div>
     
       <form class="ui massive form" >
-    <h2 class="custom-h2">悲しかったこと</h2>
+    <div class="custom-h2">悲しかったこと</div>
         <div class="field">
           <div class="ui input">
             <textarea class="custom-textarea" rows="4" type="text" v-model="post.text1"  placeholder="(例) 朝寝坊した"></textarea>
@@ -20,7 +20,7 @@
         </div><!--field-->
         
         
-    <h2 class="custom-h2">嬉しかったこと</h2>
+    <div class="custom-h2">嬉しかったこと</div>
         <div class="field">
           <div class="ui input">
             <textarea class="custom-textarea" rows="4" type="text" v-model="post.text2" placeholder="(例) ご飯がおいしかった"></textarea>
@@ -28,7 +28,7 @@
         </div><!--field-->
         
         
-    <h2 class="custom-h2">明日の目標</h2>
+    <div class="custom-h2">明日の目標</div>
         <div class="field">
           <div class="ui input">
             <textarea class="custom-textarea" rows="4" type="text" v-model="post.text3" placeholder="(例) 散歩する" ></textarea>
@@ -89,15 +89,59 @@ export default {
         text3:null,
         userId:window.localStorage.getItem('userId'),
       },
+      user:{
+        userId:window.localStorage.getItem('userId'),
+        color:window.localStorage.getItem('color'),
+        font:window.localStorage.getItem('font')
+      },
       token: window.localStorage.getItem('token'),
       isLoading: false,
       isShow: false,
       snackbarText: "",
     };
   },
-  created() {
+  created: async function() {
+    // ログイン確認
     if(!this.token) {
       this.$router.push({name: 'Login'})
+    // フォント取得
+    const headers = {'Authorization': this.token};
+    
+    try {
+      this.isLoading = true;
+      /* global fetch */
+      const res = await fetch(baseUrl + `/user?userId=${this.user.userId}`,  {
+        method: 'GET',
+        headers
+      });
+
+      const text = await res.text();
+      const jsonData = text ? JSON.parse(text) : {}
+
+      // fetchではネットワークエラー以外のエラーはthrowされないため、明示的にthrowする
+      if (!res.ok) {
+        const errorMessage = jsonData.message ?? 'エラーメッセージがありません';
+        throw new Error(errorMessage);
+      }
+      
+      
+      // 成功時の処理
+      //console.log(jsonData);
+      this.isLoading = false;
+       //this.password = jsonData.password;
+       //this.nickname = jsonData.nickname;
+      this.color = jsonData.color;
+      this.font = jsonData.font;
+      this.isLoading = false;
+      
+      var body = document.body;
+      body.style.fontFamily = this.font;
+      
+      
+      //console.log(this.post);
+    } catch (e) {
+      // エラー時の処理
+    }
     }
   },
   computed: {
@@ -187,12 +231,18 @@ export default {
     font-size: 45px; /* 好みに応じて大きさを調整 */
     color: #333; /* 好みに応じて文字色を設定 */
     text-align: center; /* 好みに応じてテキストの位置を調整 */
+    /*font-family: v-bind(font);*/
+    margin-bottom: 40px;
+    margin-top: 30px;
+    font-weight: bold;
   }
 
   /* h1要素のカスタムスタイル */
   .custom-h2 {
     font-size: 36px; /* 好みに応じて大きさを調整 */
     color: #333; /* 好みに応じて文字色を設定 */
+    margin-bottom: 30px;
+    font-weight: bold;
   }
   
   .custom-textarea{
