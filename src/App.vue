@@ -4,13 +4,12 @@
       <v-app-bar
         v-if="!isLoginPage"
         color="primary"
-        density="compact"
       >
         <template v-slot:prepend>
           <v-app-bar-nav-icon></v-app-bar-nav-icon>
         </template>
 
-        <v-app-bar-title>ほんのいちにち</v-app-bar-title>
+        <v-app-bar-title class="font-size28">ほんのいちにち</v-app-bar-title>
         <v-btn icon @click="logout">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
