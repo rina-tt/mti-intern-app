@@ -97,5 +97,6 @@ export default {
       height: 1.7rem;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-height: 1.7rem;
   }
 </style>
