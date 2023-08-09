@@ -247,6 +247,7 @@ export default {
         // 成功時の処理
         this.isLoading = false;
         this.showSnackbar( "更新に成功しました。");
+        this.password = '';
         var body = document.body;
         body.style.fontFamily = this.font;
         document.documentElement.style.setProperty('--main-color', this.color);
